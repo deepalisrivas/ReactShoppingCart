@@ -1,0 +1,10 @@
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+export const ADD_QUANTITY = "ADD_QUANTITY";
+export const SUBTRACT_QUANTITY = "SUBTRACT_QUANTITY";
+export const DISPLAY_ITEM = "DISPLAY_ITEM";
+export const ADD_SHIPPING = "ADD_SHIPPING";
+export const SUBTRACT_SHIPPING = "SUBTRACT_SHIPPING";
+export const ADD_COUPON = "ADD_COUPON";
+export const DISPLAY_MODEL = "DISPLAY_MODEL";
+export const RESET_CART = "RESET_CART";

@@ -1,0 +1,39 @@
+$light-color: #adefd1ff;
+$dark-color: #00203fff;
+.header-content-list{
+  .li-last-child:after
+  {
+    content:'';
+    height:3px;
+    display: block;
+    background:$light-color;
+    margin: 0.7rem 0;
+
+  }
+}
+.card-details {
+  & > div {
+    padding: 0.5rem;
+    margin: 1rem 0;
+    &:not(:last-child) {
+      border: solid 2px $dark-color;
+    }
+    & > div > div {
+      padding: 0.5rem 0;
+    }
+  }
+  .input-text {
+    padding: 0.5rem 1rem;
+    outline: none;
+    width: 100%;
+  }
+}
+.name-cvv-mmyy {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  grid-gap: 1rem;
+}
+.radio-btn {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+}

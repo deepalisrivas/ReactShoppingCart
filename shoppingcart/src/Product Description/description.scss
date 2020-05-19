@@ -1,0 +1,37 @@
+$light-color: #adefd1ff;
+$dark-color: #00203fff;
+li {
+  margin: 0;
+}
+
+.item-img-large {
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.reviews {
+  display: grid;
+  grid-template-columns: 3rem 1fr 3fr;
+  align-items: center;
+  margin: 1rem 0;
+}
+.prod-desc {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  //justify-content: space-between;
+
+  select {
+    background: #fff;
+    border: solid 1px $dark-color;
+    outline: none;
+  }
+}
+.main-div{
+  padding:0 0 1rem 0;
+}
+.prod-list>div {
+  padding:2rem 0 0 0;
+
+}

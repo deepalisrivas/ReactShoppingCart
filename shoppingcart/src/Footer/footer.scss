@@ -1,0 +1,22 @@
+$light-color: #adefd1ff;
+$dark-color: #00203fff;
+
+.footer-ul {
+  justify-content: center;
+  li {
+    transition: all 0.5s ease-in-out;
+    &:hover {
+      transform: translateY(3px);
+    }
+    &:last-child {
+      display: none;
+    }
+  }
+}
+nav {
+  p {
+    text-align: center;
+    color: $light-color;
+    padding: 1rem 0;
+  }
+}
