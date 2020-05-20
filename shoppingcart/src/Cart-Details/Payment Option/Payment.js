@@ -12,11 +12,15 @@ class Payment extends Component {
     checkedPaypal: false,
     submit: false,
     onShow: false,
+    onApply:false,
+    // coupon:"",
   };
   handleOnShow = (e) => {
-    this.setState({ onShow: true });
-    if (e.target.value === "FREE100") {
-      this.props.addCoupon();
+    this.setState({ onShow: true});
+    if(e.target.value==="FREE10" && e.key==='Enter') {
+
+        this.props.addCoupon();
+
     }
   };
   handleCardNumber = (e) => {
@@ -240,7 +244,8 @@ class Payment extends Component {
                       <input
                         type="text"
                         className="input-text"
-                        onChange={this.handleOnShow}
+                        // value={this.state.coupon}
+                        onKeyDown={this.handleOnShow}
                       />
                     </div>
                   ) : null}

@@ -16,6 +16,7 @@ class Home extends Component {
   };
 
   handleClick = (id) => {
+
     this.props.addToCart(id);
     // this.setState({ display: true });
   };
@@ -41,13 +42,25 @@ class Home extends Component {
         return (
           <div className="card" key={item.id}>
             <div className="card-image">
-              <img
-                src={item.img}
-                alt={item.title}
-                onClick={() => {
-                  this.handleDisplay(item.id);
-                }}
-              />
+              <p className="img-wrapper">
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  onClick={() => {
+                    this.handleDisplay(item.id);
+                  }}
+                />
+                <span>
+                  <button
+                    className="add-to-cart"
+                    onClick={() => {
+                      this.handleClick(item.id);
+                    }}
+                  >
+                    Add To Cart
+                  </button>
+                </span>
+              </p>
             </div>
 
             <div className="card-content">
@@ -55,38 +68,38 @@ class Home extends Component {
               <p>
                 <b>${item.price}</b>
               </p>
-              <div className="stars">
-                <div>
-                  <input type="radio" id="rate-5" name={item.ratingName} />
-                  <label htmlFor="rate-5" className="rating"></label>
-                </div>
-                <div>
-                  <input type="radio" id="rate-4" name={item.ratingName} />
-                  <label htmlFor="rate-4" className="rating"></label>
-                </div>
-                <div>
-                  <input type="radio" id="rate-3" name={item.ratingName} />
-                  <label htmlFor="rate-3" className="rating"></label>
-                </div>
-                <div>
-                  <input type="radio" id="rate-2" name={item.ratingName} />
-                  <label htmlFor="rate-2" className="rating"></label>
-                </div>
-                <div>
-                  <input type="radio" id="rate-1" name={item.ratingName} />
-                  <label htmlFor="rate-1" className="rating"></label>
-                </div>
-              </div>
-              <div>
-                <button
-                  className="add-to-cart"
-                  onClick={() => {
-                    this.handleClick(item.id);
-                  }}
-                >
-                  Add To Cart
-                </button>
-              </div>
+              {/*<div className="stars">*/}
+              {/*  <div>*/}
+              {/*    <input type="radio" id="rate-5" name={item.ratingName} />*/}
+              {/*    <label htmlFor="rate-5" className="rating"></label>*/}
+              {/*  </div>*/}
+              {/*  <div>*/}
+              {/*    <input type="radio" id="rate-4" name={item.ratingName} />*/}
+              {/*    <label htmlFor="rate-4" className="rating"></label>*/}
+              {/*  </div>*/}
+              {/*  <div>*/}
+              {/*    <input type="radio" id="rate-3" name={item.ratingName} />*/}
+              {/*    <label htmlFor="rate-3" className="rating"></label>*/}
+              {/*  </div>*/}
+              {/*  <div>*/}
+              {/*    <input type="radio" id="rate-2" name={item.ratingName} />*/}
+              {/*    <label htmlFor="rate-2" className="rating"></label>*/}
+              {/*  </div>*/}
+              {/*  <div>*/}
+              {/*    <input type="radio" id="rate-1" name={item.ratingName} />*/}
+              {/*    <label htmlFor="rate-1" className="rating"></label>*/}
+              {/*  </div>*/}
+              {/*</div>*/}
+              {/*<div>*/}
+              {/*  <button*/}
+              {/*    className="add-to-cart"*/}
+              {/*    onClick={() => {*/}
+              {/*      this.handleClick(item.id);*/}
+              {/*    }}*/}
+              {/*  >*/}
+              {/*    Add To Cart*/}
+              {/*  </button>*/}
+              {/*</div>*/}
             </div>
           </div>
         );

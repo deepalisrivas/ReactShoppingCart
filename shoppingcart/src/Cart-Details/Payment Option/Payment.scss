@@ -37,3 +37,8 @@ $dark-color: #00203fff;
   display: grid;
   grid-template-columns: 2rem 1fr;
 }
+@media (max-width: 500px) {
+  .card-details > div:last-child{
+    display: flex;
+  }
+}

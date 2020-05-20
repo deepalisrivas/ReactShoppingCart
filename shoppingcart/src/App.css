@@ -7,6 +7,7 @@
   .container {
     max-width: 1330px;
     margin: 0.5rem auto;
+    padding: 0.5rem;
     border: solid 1px #ccc;
   }
 
@@ -16,19 +17,3 @@
   }
 
 
-@media (max-width: 500px) {
-  .container{
-    /*max-width: 300px;*/
-    /*margin: 0.5rem auto;*/
-    border: solid 1px #ccc;
-  }
-
-
-}
-
-/*@media (max-width: 900px) {*/
-/*  .container{*/
-/*    max-width: 800px;*/
-/*  }*/
-
-/*}*/

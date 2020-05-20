@@ -60,34 +60,54 @@ $gradient-color2:#f29492;
 
   //width:calc(100%/3 - 100px);
 &-image{
+.img-wrapper{
+  position: relative;
+  &:hover{
+    img{
+      -webkit-filter: blur(1.7px);
 
-  img {
-    //width:200px;
-    height: 200px;
-    cursor: pointer;
-    transition: all 0.5s ease-in-out;
-  }
-}
-  &:hover {
-    transform: translateY(0px);
-  }
+    }
+    span{
+      display: table-cell;
+      transition: all 0.5s ease-in;
 
-  &-content {
+    }
+  }
+  span{
+    transition: all 1s ease-in;
+    position: absolute;
+    display: none;
+    top:100px;
+    left:160px;
     .add-to-cart {
-      margin-top:1rem;
+      top:80px;
+      right:10px;
       transition: all 0.3s ease-in-out;
-      padding: 0.5rem 0.7rem;
-      background: $dark-color;
-      color: $light-color;
-      border: none;
+      padding: 0.5rem 1rem;
+      background: #e74f76;
+      color: #fff;
+      border: #e74f76;
       cursor: pointer;
 
       &:active {
-        background: $gradient-color2;
+        background: $gradient-color1;
         transform:translateY(2px);
       }
     }
   }
+}
+  img {
+    height: 200px;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+  position: relative;
+  }
+}
+  &:hover {
+    transform: translateY(0px);
+
+  }
+
 }
 .products {
   display: grid;
@@ -96,9 +116,9 @@ $gradient-color2:#f29492;
 
 }
 .stars {
-  display: flex;
+  //display: flex;
 }
-.stars > div{
+.stars > div > label{
   border: none;
   float: left;
 }
@@ -108,27 +128,43 @@ $gradient-color2:#f29492;
   //opacity: 0;
   //overflow: hidden;
 }
-.stars > div > label:before {
+.stars > div:before {
   font-size: 1.2rem;
   font-family: FontAwesome;
   display: inline-block;
   content: "\f005";
 }
 
-.stars > div > .rating {
+.stars  > div {
   color: $dark-color;
   float: right;
 }
 
-.stars > div > input:checked ~ .rating,
-.stars:not(:checked) > div > .rating:hover,
-.stars:not(:checked) > div > .rating:hover ~ .rating {
+.stars  > div > input:checked ~ div,
+.stars:not(:checked) > div:hover,
+.stars:not(:checked) > div:hover ~ div {
   color: #e74f76;
 }
 
 @media (max-width:500px){
   .products{
     display: grid;
-    grid-template-columns: 1fr ;
+    grid-template-columns: auto ;
+  }
+.input-content{
+  .btn{
+    padding:0.6rem 0.2rem;
+  }
+}
+  .card-image {
+    img {
+      height: auto;
+    }
+  }
+}
+
+@media (max-width:900px){
+  .products{
+    grid-template-columns: 1fr 1fr;
   }
 }

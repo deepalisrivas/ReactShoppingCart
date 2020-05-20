@@ -6,6 +6,7 @@ import {
   addQuantity,
   subtractQuantity,
   resetCart,
+    addToCart,
 } from "../../action/reducers/cartAction";
 import "./cart.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,8 +16,12 @@ class Cart extends Component {
   state = {
     next: false,
     cancel: false,
+    activeModel:"",
   };
-
+handleSelected = (e,id) =>{
+  this.setState({activeModel:e.target.value})
+  this.props.addToCart(id)
+}
   handleNext = () => {
     this.setState({ next: true });
   };
@@ -32,8 +37,7 @@ class Cart extends Component {
   handleSubtractQuantity = (id) => {
     this.props.subtractQuantity(id);
   };
-  // componentWillUnmount() {
-  // }
+
 
   render() {
     if (this.state.next) {
@@ -42,7 +46,7 @@ class Cart extends Component {
     if (this.state.cancel) {
       return <Redirect to="/" />;
     }
-    debugger;
+
     let addedItems = this.props.items.length ? (
       this.props.items.map((item) => {
         return (
@@ -52,8 +56,13 @@ class Cart extends Component {
                 <img src={item.img} alt={item.img} />
               </div>
               <div className="item-desc">
-                <h2 className="title">{item.title}</h2>
-                <h3> ${item.price}</h3>
+                {item.models.map((x)=>{
+                  if(x.id==this.state.activeModel){
+                   return <div><h2 className="title">{x.name}</h2>
+                     <h3> ${x.price}</h3></div>
+                  }
+                })}
+
                 <button
                   className="btn-remove"
                   onClick={() => {
@@ -83,6 +92,13 @@ class Cart extends Component {
                     <FontAwesomeIcon icon={faAngleDown} />
                   </button>
                 </div>
+                <select onChange={(e)=>this.handleSelected(e,item.id)}>
+                  {item.models.map((x) => (
+                      <option value={x.id} >
+                        {x.name}
+                      </option>
+                  ))}
+                </select>
               </div>
             </div>
           </li>
@@ -114,18 +130,7 @@ class Cart extends Component {
               {this.props.items.length ? (
                 <div className="summary">
                   <h1 className="bottom-line">Summary</h1>
-                  <div>
-                    <h3>Enter Coupon Code</h3>
-                    <i
-                      className="fa fa-caret-down fa-2x"
-                      onClick={this.handleOnShow}
-                    />
-                  </div>
-                  {/*this.state.onShow ? (
-                    <div>
-                      <input type="text" className="input-text" />
-                    </div>
-                  ) : null*/}
+
                   <div>
                     <p>Sub Total</p>
                     <p>${this.props.total}</p>
@@ -184,6 +189,9 @@ const mapDispatchToProps = (dispatch) => {
     subtractQuantity: (id) => {
       dispatch(subtractQuantity(id));
     },
+    addToCart:(id)=>{
+      dispatch(addToCart((id)));
+    }
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

@@ -83,3 +83,20 @@ $dark-color: #00203fff;
 .summary>div:first-child{
   border-bottom: solid 2px $dark-color;
 }
+
+@media (max-width:500px){
+  .shipping-content{
+    grid-template-columns: 1fr;
+  }
+  .shipping-content .form-elements .shipping-details{
+   display: block;
+    &>div{
+      margin:1rem 0;
+    }
+  }
+}
+@media (max-width:900px){
+  .shipping-content{
+    grid-template-columns: 1fr;
+  }
+}

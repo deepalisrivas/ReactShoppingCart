@@ -57,3 +57,8 @@ nav {
     }
   }
 }
+@media (max-width:500px) {
+  ul{
+    flex-direction: column;
+  }
+}

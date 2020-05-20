@@ -7,10 +7,11 @@ import {
   DISPLAY_MODEL,
   RESET_CART,
 } from "../actionTypes";
-export const addToCart = (id) => {
+export const addToCart = (itemA) => {
+  // console.log(id)
   return {
     type: ADD_TO_CART,
-    id,
+    itemA,
   };
 };
 export const removeFromCart = (id) => {
@@ -44,7 +45,6 @@ export const displayModel = (id) => {
   };
 };
 export const resetCart = () => {
-  debugger;
   return {
     type: RESET_CART,
   };
