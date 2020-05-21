@@ -8,29 +8,44 @@ class Description extends Component {
         activeModel: "",
     };
     handleClick = (id) => {
-        let temp=this.props.items
-        temp.map((item)=>{
-
-            item.models.map((x)=>{
-                if(x.id==this.state.activeModel) {
-                     item.title = x.name
-                        item.subId = x.id
-                        item.price = x.price
-                    // item.id=item.id+x.id
-                    // temp=item
-                }
-            })
+        const { item} = this.props;
+        let payLoad = {...item};
+        payLoad.models.map(ele=>{
+            if(ele.id == this.state.activeModel){
+                payLoad.title = ele.name;
+                payLoad.price = ele.price;
+                payLoad.subId = ele.id;
+            }
         })
+        console.log(payLoad,'---->', item);
+        this.props.addToCart(payLoad);
+        // let temp=this.props.items
+        // temp.map((item)=>{
+
+        //     item.models.map((x)=>{
+        //         if(x.id==this.state.activeModel) {
+        //              item.title = x.name
+        //                 item.subId = x.id
+        //                 item.price = x.price
+        //             // item.id=item.id+x.id
+        //             // temp=item
+        //             debugger
+        //             this.props.addToCart(item);
+
+        //         }
+        //     })
+        // })
         console.log(this.props.items);
-        this.props.addToCart(temp);
     };
     handleSelected = (e) => {
         this.setState({activeModel: e.target.value});
     };
 
     render() {
-        let addedItems = this.props.items.length ? (
-            this.props.items.map((item) => {
+
+        // let addedItems = this.props.items.length ? (
+        //     this.props.items.map((item) => {
+            const { item } = this.props;
                 return (
                     <li key={item.id} className="item-list">
                         <div className="main-div">
@@ -109,25 +124,25 @@ class Description extends Component {
                         </div>
                     </li>
                 );
-            })
-        ) : (
-            <h1>Your Cart is Empty</h1>
-        );
+            // })
+        // ) : (
+        //     <h1>Your Cart is Empty</h1>
+        // );
 
-        return (
-            <div>
-                <section className="padding-y">
-                    <ul>{addedItems}</ul>
-                </section>
-            </div>
-        );
+        // return (
+        //     <div>
+        //         <section className="padding-y">
+        //             <ul>{addedItems}</ul>
+        //         </section>
+        //     </div>
+        // );
         //
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        items: state.showItems,
+        item: state.showItems,
         // models: state.models,
 
         // models: state.showModels,
@@ -135,6 +150,7 @@ const mapStateToProps = (state) => {
         taxes: state.taxes.toFixed(1),
         grandTotal: state.total + state.taxes,
     };
+    
 };
 const mapDispatchToProps = (dispatch) => {
     return {

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./Home.scss";
 import { connect } from "react-redux";
 import { addToCart, displayItem } from "../action/reducers/cartAction";
+import {items} from '../action/constant';
 import { Redirect } from "react-router-dom";
 
 class Home extends Component {
@@ -16,8 +17,13 @@ class Home extends Component {
   };
 
   handleClick = (id) => {
-
-    this.props.addToCart(id);
+    let payLoad = {};
+    items.map( ele =>{
+      if(ele.id == id){
+        return payLoad = ele;
+      }
+    })
+    this.props.addToCart(payLoad);
     // this.setState({ display: true });
   };
   handleDisplay = (id) => {
@@ -29,7 +35,7 @@ class Home extends Component {
     if (this.state.display) {
       return <Redirect to="/description" />;
     }
-    let itemList = this.props.items
+    let itemList = items
       .filter((item) => {
         if (this.state.search == null) return item;
         else if (

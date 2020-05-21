@@ -6,7 +6,7 @@ import {
   addQuantity,
   subtractQuantity,
   resetCart,
-    addToCart,
+  addToCart,
 } from "../../action/reducers/cartAction";
 import "./cart.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,12 +16,15 @@ class Cart extends Component {
   state = {
     next: false,
     cancel: false,
-    activeModel:"",
+    activeModel: "",
   };
-handleSelected = (e,id) =>{
-  this.setState({activeModel:e.target.value})
-  this.props.addToCart(id)
-}
+  componentDidMount() {
+    console.log("props", this.props.items);
+  }
+  handleSelected = (e, id) => {
+    this.setState({ activeModel: e.target.value });
+    this.props.addToCart(id);
+  };
   handleNext = () => {
     this.setState({ next: true });
   };
@@ -37,7 +40,6 @@ handleSelected = (e,id) =>{
   handleSubtractQuantity = (id) => {
     this.props.subtractQuantity(id);
   };
-
 
   render() {
     if (this.state.next) {
@@ -56,12 +58,16 @@ handleSelected = (e,id) =>{
                 <img src={item.img} alt={item.img} />
               </div>
               <div className="item-desc">
-                {item.models.map((x)=>{
+                {/* {item.models.map((x)=>{
                   if(x.id==this.state.activeModel){
                    return <div><h2 className="title">{x.name}</h2>
                      <h3> ${x.price}</h3></div>
                   }
-                })}
+                })} */}
+                <div>
+                  <h2 className="title">{item.title}</h2>
+                  <h3> ${item.price}</h3>
+                </div>
 
                 <button
                   className="btn-remove"
@@ -92,11 +98,12 @@ handleSelected = (e,id) =>{
                     <FontAwesomeIcon icon={faAngleDown} />
                   </button>
                 </div>
-                <select onChange={(e)=>this.handleSelected(e,item.id)}>
+                <select
+                  onChange={(e) => this.handleSelected(e, item.id)}
+                  value={item.subId}
+                >
                   {item.models.map((x) => (
-                      <option value={x.id} >
-                        {x.name}
-                      </option>
+                    <option value={x.id}>{x.name}</option>
                   ))}
                 </select>
               </div>
@@ -189,9 +196,9 @@ const mapDispatchToProps = (dispatch) => {
     subtractQuantity: (id) => {
       dispatch(subtractQuantity(id));
     },
-    addToCart:(id)=>{
-      dispatch(addToCart((id)));
-    }
+    addToCart: (id) => {
+      dispatch(addToCart(id));
+    },
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
